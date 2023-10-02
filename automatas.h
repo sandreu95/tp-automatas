@@ -5,6 +5,7 @@ int ColumnaOctal (int);
 int ColumnaHexadecimal (int);
 
 int AutomataDecimal (const char *cadena) {
+    int errores = 0;
     static int tablaT [4][4] = {{1,3,2,3},
                                 {1,1,3,3},
                                 {1,3,3,3},
@@ -13,15 +14,21 @@ int AutomataDecimal (const char *cadena) {
     int estActual = 0;
     unsigned int i = 0;
     int caracter = cadena[0]; /* primer caracter */
-    while (caracter != '\0' && estActual != 3) {
-        estActual=tablaT[estActual][ColumnaDecimal(caracter)];
+    while (caracter != '\0') {
+        int columna  = ColumnaDecimal(caracter);
+        if (columna == 3) {
+            errores++;
+        }
+        estActual=tablaT[estActual][columna];
         caracter = cadena[++i];
     }
     if (estActual == 1) return 1; /* estado final */
+    printf("La palabra no fue reconocida, la cantidad de errores es: %d\n", errores);
     return 0;
 }
 
 int AutomataOctal (const char *cadena) {
+    int errores = 0;
     static int tablaT [3][2] = {{1,2},
                                 {1,2},
                                 {2,2}, /* rechazo */
@@ -30,14 +37,21 @@ int AutomataOctal (const char *cadena) {
     unsigned int i = 0; /* recorre la cadena */
     int caracter = cadena[0]; /* primer caracter */
     while (caracter != '\0' && estActual != 2) {
-        estActual=tablaT[estActual][ColumnaOctal(caracter)];
+        int columna  = ColumnaOctal(caracter);
+        if (columna == 1) {
+            errores++;
+        }
+        estActual=tablaT[estActual][columna];
         caracter = cadena[++i];
+        if (ColumnaDecimal(caracter) == 1) {errores++;}
     }
  if (estActual == 1) return 1; /* estado final */
+ printf("La palabra no fue reconocida, la cantidad de errores es: %d\n", errores);
  return 0;
 }
 
 int AutomataHexadecimal (const char *cadena) {
+    int errores = 0;
     static int tablaT [3][2] = {{1,2},
                                 {1,2},
                                 {2,2}, /* rechazo */
@@ -46,10 +60,15 @@ int AutomataHexadecimal (const char *cadena) {
     unsigned int i = 0; /* recorre la cadena */
     int caracter = cadena[0]; /* primer caracter */
     while (caracter != '\0' && estActual != 2) {
-        estActual=tablaT[estActual][ColumnaHexadecimal(caracter)];
+        int columna  = ColumnaHexadecimal(caracter);
+        if (columna == 1) {
+            errores++;
+        }
+        estActual=tablaT[estActual][columna];
         caracter = cadena[++i];
     }
  if (estActual == 1) return 1; /* estado final */
+ printf("La palabra no fue reconocida, la cantidad de errores es: %d\n", errores);
  return 0;
 }
 

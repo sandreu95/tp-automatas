@@ -1,0 +1,39 @@
+-automata
+12345.6789$01234567$0x12345n6789ABCDE
+
+output
+La palabra no fue reconocida, la cantidad de errores es: 1
+El automata NO reconocio la palabra 12345.6789
+El automata reconocio la palabra 1234567
+La palabra no fue reconocida, la cantidad de errores es: 1
+El automata NO reconocio la palabra 12345n6789ABCDE
+
+-caso 2
+12345.6789$01234567$0x12345n6789ABCDE$012345678$1E$0x1H
+
+output
+PS D:\repos\tp-automatas> .\tp-automatas.exe
+La palabra no fue reconocida, la cantidad de errores es: 1
+El automata NO reconocio la palabra 12345.6789
+El automata reconocio la palabra 1234567
+La palabra no fue reconocida, la cantidad de errores es: 1
+El automata NO reconocio la palabra 12345n6789ABCDE
+La palabra no fue reconocida, la cantidad de errores es: 1
+El automata NO reconocio la palabra 12345678
+La palabra no fue reconocida, la cantidad de errores es: 1
+El automata NO reconocio la palabra 1E
+La palabra no fue reconocida, la cantidad de errores es: 1
+El automata NO reconocio la palabra 1H
+PS D:\repos\tp-automatas>
+
+-Caso 1 operaciones
+2+3+5*4/2+1*2-1-7
+
+output
+El resultado de la operacion es 9
+
+-Caso 2 operaciones
+5*8+7*4/2-5*1+4/2*2
+
+output
+El resultado de la operacion es 53

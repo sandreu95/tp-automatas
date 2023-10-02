@@ -8,28 +8,6 @@
 #define HEXADECIMAL 3
 #define MAX_TAMANO_PALABRA 100
 
-int operaciones (int operando1, int operando2, char operador) {
-    int resultado;
-    if (operador == '+') {
-        resultado = operando1 + operando2;
-    } else if (operador == '-') {
-        resultado = operando1 - operando2;
-    } else if (operador == '*') {
-        resultado = operando1 * operando2;
-    } else if (operador == '/') {
-        if (operando2 != 0) {
-            resultado = operando1 / operando2;
-        } else {
-            printf("Error: División por cero.\n");
-            return 1;
-        }
-    } else {
-        printf("Operador no reconocido.\n");
-        return 1;
-    }
-    return resultado;
-}
-
  /*Imprime en pantalla si el automata utilizado reconoció o no la palabra*/
 void printSiReconoce (const char * palabra, int resultado) {
     if (resultado) {
@@ -76,14 +54,6 @@ int automata (char *palabra) {
         return AutomataOctal(palabra);
     }
     return AutomataHexadecimal(palabra);
-}
-
-int char_to_int (char c) {
-    int valor;
-    if (c <= '9' && c >= '0') {
-        valor = c - '0';
-    }
-    return valor;
 }
 
 int main () {
